@@ -1,7 +1,10 @@
 package test;
 
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import page.CategoryBarPage;
 import page.CategoryPage;
@@ -19,6 +22,8 @@ public class SearchProducts {
 
         categoryBarPage.getWomenCategoryButton().click();
         assertEquals("Women", categoryPage.getCategoryTitle().getText(), "Verify the Women category button returns the Women page");
+        Allure.getLifecycle().addAttachment("Women Category", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));
+
     }
 
     @Test
@@ -29,6 +34,7 @@ public class SearchProducts {
         categoryBarPage.getDressesCategoryButton().click();
 
         assertEquals("Dresses", categoryPage.getCategoryTitle().getText(), "Verify the Dresses category button returns the Dresses page");
+        Allure.getLifecycle().addAttachment("Dress Category", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));
     }
 
     @Test
@@ -39,5 +45,6 @@ public class SearchProducts {
         categoryBarPage.getTshirtsCategoryButton().click();
 
         assertEquals("T-shirts", categoryPage.getCategoryTitle().getText(), "Verify the T-Shirts category button returns the T-Shirts page");
+        Allure.getLifecycle().addAttachment("T-Shirt Category", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));
     }
 }

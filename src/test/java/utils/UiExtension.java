@@ -1,13 +1,16 @@
 package utils;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.extension.*;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class UiExtension implements BeforeEachCallback, AfterEachCallback, ParameterResolver, AfterAllCallback{
+public class UiExtension implements BeforeEachCallback, AfterEachCallback, ParameterResolver {
 
     ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
@@ -34,11 +37,9 @@ public class UiExtension implements BeforeEachCallback, AfterEachCallback, Param
 
     @Override
     public void afterEach(ExtensionContext context) {
+        if (context.getExecutionException().isPresent()){
+            Allure.getLifecycle().addAttachment("Test Failure", "image/png",".png", ((TakesScreenshot)driver.get()).getScreenshotAs(OutputType.BYTES));
+        }
         driver.get().close();
-    }
-
-    @Override
-    public void afterAll(ExtensionContext context) {
-
     }
 }

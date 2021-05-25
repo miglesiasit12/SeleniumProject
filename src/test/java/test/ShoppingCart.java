@@ -1,7 +1,10 @@
 package test;
 
+import io.qameta.allure.Allure;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -24,12 +27,13 @@ public class ShoppingCart {
         WebElement cartItemTitle = addedToCartPage.getCartItemTitle();
 
         womenCategoryPage.addFirstWomenProductToCart();
-        new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(cartItemTitle));
+        new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(cartItemTitle));
 
-        assertAll(
+        assertAll("Validate item in cart",
                 () -> assertEquals("There is 1 item in your cart.", addedToCartPage.getCartProductHeader().getText(), "Verify 1 Item was added to cart"),
                 () -> assertEquals("Faded Short Sleeve T-shirts", cartItemTitle.getText(), "Verify the correct item was added")
         );
+        Allure.addAttachment("Shopping Cart", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64),".png");
     }
 
     @Test
@@ -40,11 +44,12 @@ public class ShoppingCart {
         WebElement shoppingCartWarning = shoppingCartPage.getShoppingCartWarning();
 
         womenCategoryPage.addFirstWomenProductToCart();
-        addedToCartPage.getProceedToCheckoutButton().click();
+        new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(addedToCartPage.getProceedToCheckoutButton())).click();
         shoppingCartPage.getTrashCanIcon().click();
         new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(shoppingCartWarning));
 
         assertEquals("Your shopping cart is empty.", shoppingCartWarning.getText(), "Verify shopping cart is emptied if only item is deleted");
+        Allure.getLifecycle().addAttachment("Shopping Cart", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));
     }
 
 }
