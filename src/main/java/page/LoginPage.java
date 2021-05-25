@@ -20,4 +20,10 @@ public class LoginPage extends BasePage {
 
     @FindBy(id = "SubmitLogin")
     private WebElement loginButton;
+
+    public void login() {
+        getEmailAddressTextBox().sendKeys("michaeliglesiasit@gmail.com");
+        getPasswordTextBox().sendKeys("&ZRb5ekckHE&");
+        getLoginButton().click();
+    }
 }

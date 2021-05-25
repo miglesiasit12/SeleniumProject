@@ -6,7 +6,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 @Getter
-public class HeaderBarPage extends BasePage{
+public class HeaderBarPage extends BasePage {
 
     public HeaderBarPage(WebDriver driver) {
         super(driver);

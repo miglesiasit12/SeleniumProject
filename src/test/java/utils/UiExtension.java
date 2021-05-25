@@ -7,7 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.util.concurrent.TimeUnit;
 
-public class UiExtension implements BeforeEachCallback, AfterEachCallback, ParameterResolver {
+public class UiExtension implements BeforeEachCallback, AfterEachCallback, ParameterResolver, AfterAllCallback{
 
     ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
@@ -35,5 +35,10 @@ public class UiExtension implements BeforeEachCallback, AfterEachCallback, Param
     @Override
     public void afterEach(ExtensionContext context) {
         driver.get().close();
+    }
+
+    @Override
+    public void afterAll(ExtensionContext context) {
+
     }
 }

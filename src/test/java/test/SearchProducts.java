@@ -27,6 +27,7 @@ public class SearchProducts {
         CategoryPage categoryPage = new CategoryPage(driver);
 
         categoryBarPage.getDressesCategoryButton().click();
+
         assertEquals("Dresses", categoryPage.getCategoryTitle().getText(), "Verify the Dresses category button returns the Dresses page");
     }
 
@@ -36,6 +37,7 @@ public class SearchProducts {
         CategoryPage categoryPage = new CategoryPage(driver);
 
         categoryBarPage.getTshirtsCategoryButton().click();
+
         assertEquals("T-shirts", categoryPage.getCategoryTitle().getText(), "Verify the T-Shirts category button returns the T-Shirts page");
     }
 }

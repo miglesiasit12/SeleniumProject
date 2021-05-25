@@ -1,12 +1,16 @@
 package page;
 
 import lombok.Getter;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 @Getter
-public class CategoryPage extends BasePage{
+public class CategoryPage extends BasePage {
 
     public CategoryPage(WebDriver driver) {
         super(driver);
@@ -17,4 +21,9 @@ public class CategoryPage extends BasePage{
 
     @FindBy(className = "#center_column > div.content_scene_cat > div > div > div")
     private WebElement categoryDescription;
+
+    @FindBy(css = "#center_column > ul > li")
+    private List<WebElement> productResultList;
+
+
 }
