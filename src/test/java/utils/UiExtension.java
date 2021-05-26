@@ -1,12 +1,13 @@
 package utils;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.extension.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import utils.webDriver.RemoteWebDriverFactory;
+import utils.webDriver.WebDriverFactory;
+import utils.webDriver.WebDriverType;
 
 import java.util.concurrent.TimeUnit;
 
@@ -27,8 +28,12 @@ public class UiExtension implements BeforeEachCallback, AfterEachCallback, Param
     @Override
     public void beforeEach(ExtensionContext context) {
         WebDriver webDriver;
-        WebDriverManager.chromedriver().setup();
-        webDriver = new ChromeDriver();
+        if (Boolean.valueOf(System.getenv().get("isRemoteDriverRun")).equals(true)){
+            webDriver = RemoteWebDriverFactory.getWebDriver(WebDriverType.valueOf(System.getenv().get("browserType")));
+        } else {
+            webDriver = WebDriverFactory.getWebDriver(WebDriverType.valueOf(System.getenv().get("browserType")));
+        }
+
         webDriver.get("http://www.automationpractice.com/");
         webDriver.manage().window().maximize();
         webDriver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);

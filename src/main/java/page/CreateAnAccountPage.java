@@ -1,5 +1,6 @@
 package page;
 
+import com.github.javafaker.Faker;
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -86,10 +87,11 @@ public class CreateAnAccountPage extends BasePage {
     private WebElement registerButton;
 
     public User createAccount() {
+        Faker faker = new Faker();
         HeaderBarPage headerBarPage = new HeaderBarPage(driver);
         AuthenticationPage authenticationPage = new AuthenticationPage(driver);
-        String emailAddress = UUID.randomUUID() + "@gmail.com";
-        String password = UUID.randomUUID().toString().substring(0,31);
+        String emailAddress = faker.internet().emailAddress();
+        String password = faker.internet().password(6,31);
         User user = new User(emailAddress, password);
 
         headerBarPage.getLoginLink().click();
@@ -97,26 +99,26 @@ public class CreateAnAccountPage extends BasePage {
         authenticationPage.getCreateAnAccountButton().click();
 
         getTitleMrRadioButton().click();
-        getPersonalInfoFirstNameTextBox().sendKeys("First Name");
-        getPersonalInfoLastNameTextBox().sendKeys("Last Name");
+        getPersonalInfoFirstNameTextBox().sendKeys(faker.name().firstName());
+        getPersonalInfoLastNameTextBox().sendKeys(faker.name().lastName());
         getPasswordTextBox().sendKeys(password);
         new Select(getDateOfBirthDayDropdown()).selectByValue("1");
         new Select(getDateOfBirthMonthDropdown()).selectByValue("12");
         new Select(getDateOfBirthDayYear()).selectByValue("1980");
         getSignUpForNewsLetterCheckBox().click();
         getSpecialOffersCheckBox().click();
-        getCompanyTextBox().sendKeys("My Company");
-        getAddressTextBox().sendKeys("123 The Way st");
-        getAddressLineTwoTextBox().sendKeys("203");
-        getCityTextBox().sendKeys("Orlando");
-        new Select(getStateDropDown()).selectByVisibleText("Florida");
-        getZipCodeTextBox().sendKeys("33748");
+        getCompanyTextBox().sendKeys(faker.company().name());
+        getAddressTextBox().sendKeys(faker.address().streetAddress());
+        getAddressLineTwoTextBox().sendKeys(faker.address().streetAddressNumber());
+        getCityTextBox().sendKeys(faker.address().city());
+        new Select(getStateDropDown()).selectByVisibleText(faker.address().state());
+        getZipCodeTextBox().sendKeys("33521");
         new Select(getCountryDropDown()).selectByVisibleText("United States");
-        getAdditionalInformationTextBox().sendKeys("Some additional info");
-        getHomePhoneTextBox().sendKeys("9999999999");
-        getMobilePhoneTextBox().sendKeys("1111111111");
+        getAdditionalInformationTextBox().sendKeys(faker.leagueOfLegends().rank());
+        getHomePhoneTextBox().sendKeys(faker.phoneNumber().cellPhone());
+        getMobilePhoneTextBox().sendKeys(faker.phoneNumber().cellPhone());
         getAddressAliasTextBox().clear();
-        getAddressAliasTextBox().sendKeys("ThisAddressOfMine");
+        getAddressAliasTextBox().sendKeys(faker.animal().name());
         getRegisterButton().click();
 
         return user;

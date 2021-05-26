@@ -1,6 +1,7 @@
-package test;
+package test.ui;
 
 import io.qameta.allure.Allure;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.OutputType;
@@ -17,6 +18,7 @@ import utils.UiExtension;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Tag("ui")
 @ExtendWith(UiExtension.class)
 public class ShoppingCart {
 

@@ -1,6 +1,7 @@
-package test;
+package test.ui;
 
 import io.qameta.allure.Allure;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.OutputType;
@@ -14,6 +15,7 @@ import utils.UiExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Tag("ui")
 @ExtendWith(UiExtension.class)
 public class Authentication {
 
@@ -45,6 +47,5 @@ public class Authentication {
         );
         Allure.addAttachment("Account Page", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BASE64),".png");
         Allure.getLifecycle().addAttachment("Account Page", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));
-
     }
 }
