@@ -1,4 +1,4 @@
-package page;
+package test.ui.page;
 
 import lombok.Getter;
 import org.openqa.selenium.WebDriver;

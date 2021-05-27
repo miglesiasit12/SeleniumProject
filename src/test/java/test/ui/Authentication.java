@@ -7,11 +7,11 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import page.AccountPage;
-import page.AuthenticationPage;
-import page.CreateAnAccountPage;
-import page.HeaderBarPage;
-import utils.UiExtension;
+import test.ui.page.AccountPage;
+import test.ui.page.AuthenticationPage;
+import test.ui.page.CreateAnAccountPage;
+import test.ui.page.HeaderBarPage;
+import test.ui.utils.UiExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,7 +37,7 @@ public class Authentication {
         AccountPage accountPage = new AccountPage(driver);
 
         createAnAccountPage.createAccount();
-        assertAll("Validate elements on the account page",
+        assertAll("Validate elements on the account test.ui.page",
                 () -> assertEquals("MY ACCOUNT", accountPage.getAccountTitle().getText(), "Validate Account Title Shows"),
                 () -> assertTrue(accountPage.getMyAddressesButton().isDisplayed(), "Validate Address button is displayed"),
                 () -> assertTrue(accountPage.getMyCreditSlipsButton().isDisplayed(), "Validate Credit slips button is displayed"),

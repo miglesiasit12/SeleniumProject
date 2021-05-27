@@ -9,8 +9,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import page.*;
-import utils.UiExtension;
+import test.ui.page.*;
+import test.ui.utils.UiExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -40,6 +40,6 @@ public class Checkout {
 
         paymentPage.getConfirmOrderButton().click();
         assertEquals("Your order on My Store is complete.", paymentPage.getCompleteOrderTitle().getText(), "Verify Bank Wire Payment is shown");
-        Allure.getLifecycle().addAttachment("Checkout final page", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));
+        Allure.getLifecycle().addAttachment("Checkout final test.ui.page", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));
     }
 }

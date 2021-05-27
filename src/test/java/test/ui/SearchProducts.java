@@ -8,9 +8,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import page.CategoryBarPage;
-import page.CategoryPage;
-import utils.UiExtension;
+import test.ui.page.CategoryBarPage;
+import test.ui.page.CategoryPage;
+import test.ui.utils.UiExtension;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -29,7 +29,7 @@ public class SearchProducts {
         CategoryPage categoryPage = new CategoryPage(driver);
 
         categoryBarPage.getWomenCategoryButton().click();
-        assertEquals("Women", categoryPage.getCategoryTitle().getText(), "Verify the Women category button returns the Women page");
+        assertEquals("Women", categoryPage.getCategoryTitle().getText(), "Verify the Women category button returns the Women test.ui.page");
         Allure.getLifecycle().addAttachment("Women Category", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));
     }
 
@@ -39,7 +39,7 @@ public class SearchProducts {
         CategoryPage categoryPage = new CategoryPage(driver);
 
         categoryBarPage.getDressesCategoryButton().click();
-        assertEquals("Dresses", categoryPage.getCategoryTitle().getText(), "Verify the Dresses category button returns the Dresses page");
+        assertEquals("Dresses", categoryPage.getCategoryTitle().getText(), "Verify the Dresses category button returns the Dresses test.ui.page");
         Allure.getLifecycle().addAttachment("Dress Category", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));
     }
 
@@ -49,7 +49,7 @@ public class SearchProducts {
         CategoryPage categoryPage = new CategoryPage(driver);
 
         categoryBarPage.getTshirtsCategoryButton().click();
-        assertEquals("T-shirts", categoryPage.getCategoryTitle().getText(), "Verify the T-Shirts category button returns the T-Shirts page");
+        assertEquals("T-shirts", categoryPage.getCategoryTitle().getText(), "Verify the T-Shirts category button returns the T-Shirts test.ui.page");
         Allure.getLifecycle().addAttachment("T-Shirt Category", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));
     }
 }

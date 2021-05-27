@@ -1,4 +1,4 @@
-package page;
+package test.ui.page;
 
 import com.github.javafaker.Faker;
 import lombok.Getter;
@@ -6,9 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import util.User;
-
-import java.util.UUID;
+import test.ui.utils.User;
 
 @Getter
 public class CreateAnAccountPage extends BasePage {

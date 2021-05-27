@@ -1,13 +1,13 @@
-package utils;
+package test.ui.utils;
 
 import io.qameta.allure.Allure;
 import org.junit.jupiter.api.extension.*;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-import utils.webDriver.RemoteWebDriverFactory;
-import utils.webDriver.WebDriverFactory;
-import utils.webDriver.WebDriverType;
+import test.ui.utils.webDriver.RemoteWebDriverFactory;
+import test.ui.utils.webDriver.WebDriverFactory;
+import test.ui.utils.webDriver.WebDriverType;
 
 import java.util.concurrent.TimeUnit;
 

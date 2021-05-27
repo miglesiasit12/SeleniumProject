@@ -10,10 +10,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import page.AddedToCartPage;
-import page.ShoppingCartPage;
-import page.WomenCategoryPage;
-import utils.UiExtension;
+import test.ui.page.AddedToCartPage;
+import test.ui.page.ShoppingCartPage;
+import test.ui.page.WomenCategoryPage;
+import test.ui.utils.UiExtension;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;

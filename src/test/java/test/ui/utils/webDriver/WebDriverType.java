@@ -1,4 +1,4 @@
-package utils.webDriver;
+package test.ui.utils.webDriver;
 
 public enum WebDriverType {
     CHROME,
