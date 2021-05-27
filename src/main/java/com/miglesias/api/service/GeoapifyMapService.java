@@ -11,6 +11,9 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Service
@@ -29,7 +32,7 @@ public class GeoapifyMapService {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public GeoapifyMap addMap(GeoapifyMap geoapifyMap) {
+    public GeoapifyMap addMap(GeoapifyMap geoapifyMap) throws UnsupportedEncodingException {
         geoapifyMap.setUrl(generateMapUrl(geoapifyMap));
         mongoTemplate.save(geoapifyMap, "Maps");
         return geoapifyMap;
@@ -53,7 +56,7 @@ public class GeoapifyMapService {
         return mongoTemplate.findAndModify(new Query().addCriteria(mongoDb), update, new FindAndModifyOptions().returnNew(true), GeoapifyMap.class, "Maps");
     }
 
-    private String generateMapUrl(GeoapifyMap geoapifyMap) {
+    private String generateMapUrl(GeoapifyMap geoapifyMap) throws UnsupportedEncodingException {
         StringBuilder url = new StringBuilder(geoapifyMapBaseUrl + "?");
         String style = geoapifyMap.getStyle();
         Integer width = geoapifyMap.getWidth();
@@ -63,21 +66,23 @@ public class GeoapifyMapService {
 
         url.append("style=").append(style).append("&");
         if (width != null) {
-            url.append("width=").append(geoapifyMap.getStyle()).append("&");
+            url.append("width=").append(geoapifyMap.getWidth()).append("&");
         }
         if (height != null) {
-            url.append("height=").append(geoapifyMap.getStyle()).append("&");
+            url.append("height=").append(geoapifyMap.getHeight()).append("&");
         }
         url.append("center=lonlat:").append(area).append("&");
 
         if (marker != null) {
             url.append("marker=lonlat:").append(marker.getLonlat()).append(";");
-            url.append("type:").append(marker.getType()).append(";");
-            url.append("color:").append(marker.getColor()).append(";");
+            url.append("color:").append(marker.getColor().replace("#", "%23")).append(";");
             url.append("size:").append(marker.getSize()).append(";");
-            url.append("icon;").append(marker.getIcon()).append("&");
+            url.append("type:").append(marker.getType()).append(";");
+            url.append("icon:").append(marker.getIcon()).append("&");
         }
+
         url.append("apiKey=").append(geoapifyApiKey);
         return url.toString();
     }
+
 }

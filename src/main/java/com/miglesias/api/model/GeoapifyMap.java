@@ -17,6 +17,7 @@ public class GeoapifyMap {
     private String mapName;
 
     @NotBlank(message = "area to display, currently supports only rectangular regions defined by 2 comma-separated pairs of longitude,latitude coordinates (e.g \"rect:12.024,42.226,13.001,41.542\")")
+    @Pattern(regexp = "^((-?|\\+?)?\\d+(\\.\\d+)?),\\s*((-?|\\+?)?\\d+(\\.\\d+)?)$", message = "Separated by comma")
     private String area;
 
     @Pattern(regexp = "osm-carto|osm-bright|osm-bright-grey|osm-bright-smooth|klokantech-basic|osm-liberty|maptiler-3d|toner|toner-grey|positron|positron-blue|positron-red|dark-matter|dark-matter-brown|dark-matter-dark-grey|dark-matter-dark-purple|dark-matter-purple-roads|dark-matter-yellow-roads",

@@ -10,6 +10,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 @Api(tags = "Map creation service")
@@ -27,7 +28,7 @@ public class MapController {
 
     @PostMapping("/map")
     @ApiOperation("Creates a map")
-    public ResponseEntity<GeoapifyMap> createMap(@Valid @RequestBody GeoapifyMap geoapifyMap) {
+    public ResponseEntity<GeoapifyMap> createMap(@Valid @RequestBody GeoapifyMap geoapifyMap) throws UnsupportedEncodingException {
         GeoapifyMap geoapifyMapCreated = geoapifyMapService.addMap(geoapifyMap);
 
         return ResponseEntity.status(HttpStatus.OK).body(geoapifyMapCreated);
@@ -43,7 +44,6 @@ public class MapController {
         }
         return ResponseEntity.status(HttpStatus.OK).body(maps);
     }
-
 
     @DeleteMapping("/map")
     @ApiOperation("Deletes maps")

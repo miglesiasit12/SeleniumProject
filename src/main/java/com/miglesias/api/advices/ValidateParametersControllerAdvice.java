@@ -1,7 +1,7 @@
 package com.miglesias.api.advices;
 
 import com.miglesias.api.model.error.ValidationErrorResponse;
-import com.miglesias.api.model.error.Violation;
+import com.miglesias.api.model.error.errors;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
-import java.util.ArrayList;
 
 @ControllerAdvice
 class ValidateParametersControllerAdvice {
@@ -23,7 +22,7 @@ class ValidateParametersControllerAdvice {
     ValidationErrorResponse onConstraintValidationException(ConstraintViolationException e) {
         ValidationErrorResponse error = new ValidationErrorResponse();
         for (ConstraintViolation violation : e.getConstraintViolations()) {
-            error.getViolations().add(new Violation(violation.getPropertyPath().toString(), violation.getMessage()));
+            error.getErrors().add(new errors(violation.getPropertyPath().toString(), violation.getMessage()));
         }
         return error;
     }
@@ -34,7 +33,7 @@ class ValidateParametersControllerAdvice {
     ValidationErrorResponse onMethodArgumentNotValidException(MethodArgumentNotValidException e) {
         ValidationErrorResponse error = new ValidationErrorResponse();
         for (FieldError fieldError : e.getBindingResult().getFieldErrors()) {
-            error.getViolations().add(new Violation(fieldError.getField(), fieldError.getDefaultMessage()));
+            error.getErrors().add(new errors(fieldError.getField(), fieldError.getDefaultMessage()));
         }
         return error;
     }

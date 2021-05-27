@@ -6,20 +6,16 @@ plugins {
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
 
-
 allure {
     version = '2.14.0'
     autoconfigure = false
     aspectjweaver = true
     aspectjVersion = '1.9.6'
+    clean = true
     allureJavaVersion = '2.14.0'
     resultsDir = file('/allure/allure-results')
     reportDir = file('/allure/allure-report')
-    downloadLink = "http://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.14.0/allure-commandline-2.14.0.zip"
-
-    useJUnit5 {
-        version = '2.14.0'
-    }
+    //downloadLink = "http://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.14.0/allure-commandline-2.14.0.zip"
 }
 
 repositories {
@@ -37,10 +33,16 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '2.5.0'
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
     implementation group: 'org.aspectj', name: 'aspectjweaver', version: '1.9.6'
+    implementation 'javax.xml.bind:jaxb-api:2.2.11'
+    implementation group: 'org.codehaus.groovy', name: 'groovy-all', version: '3.0.7', ext: 'pom'
     testImplementation group: 'io.qameta.allure', name: 'allure-java-commons', version: '2.14.0'
     testImplementation group: 'io.qameta.allure', name: 'allure-junit5', version: '2.14.0'
+    testImplementation group: 'io.qameta.allure', name: 'allure-rest-assured', version: '2.14.0'
     testImplementation group: 'io.qameta.allure', name: 'allure-junit5-assert', version: '2.14.0'
     testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    testImplementation 'io.rest-assured:rest-assured:4.2.0'
+    testImplementation 'io.rest-assured:json-path:4.2.0'
+    testImplementation group: 'io.rest-assured', name: 'xml-path', version: '4.2.0'
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.7.2")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.7.2")
     testImplementation 'com.github.javafaker:javafaker:1.0.2'
@@ -55,14 +57,13 @@ configurations {
 
 test {
     useJUnitPlatform {
-        includeTags 'ui'
     }
     environment("browserType", "CHROME")
     environment("isRemoteDriverRun", false)
     environment("remoteWebDriverHost", "http://localhost:4444/wd/hub")
-    environment("apikey", "30e5ddf7c3be48a799f8e148a6f576f9")
-    environment("MongoDbUser", "map_svc_acct")
-    environment("MongoDbPW", "drZ0lC57pSGELPBC")
+    environment("mapApiBaseUrl", "http://localhost")
+    environment("mapApiBasePath", "/api/v1")
+    environment("mapApiPort", "8080")
 }
 
 

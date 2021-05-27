@@ -11,6 +11,6 @@ import java.util.List;
 @JsonSerialize
 @JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 public class ValidationErrorResponse {
-    private List<Violation> violations = new ArrayList<>();
+    private List<errors> errors = new ArrayList<>();
 }
 
