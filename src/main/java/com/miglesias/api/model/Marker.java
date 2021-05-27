@@ -1,4 +1,4 @@
-package api.model;
+package com.miglesias.api.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,7 +30,4 @@ public class Marker {
     @Pattern(regexp = "material|awesome|circle", message = "marker type, one of material, awesome, circle (e.g. circle)")
     @NotBlank(message = "marker type is required. choose from one of material, awesome, circle (e.g. circle)")
     private String type;
-
-
-
 }

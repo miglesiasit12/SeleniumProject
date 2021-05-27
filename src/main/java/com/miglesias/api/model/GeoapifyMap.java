@@ -1,4 +1,4 @@
-package api.model;
+package com.miglesias.api.model;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;

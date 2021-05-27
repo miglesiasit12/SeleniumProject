@@ -1,2 +1,12 @@
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.mongo.embedded.EmbeddedMongoAutoConfiguration
+  data:
+    mongodb:
+      host: ${MONGO_HOST:personalities.f6rhh.mongodb.net/GeoapifyMap?retryWrites=true&w=majority}
+      username: ${MONGO_PASSWORD:map_svc_acct}
+      password: ${MONGO_PASSWORD:SjPm75D4FynO29Q4}
+      database: ${MONGO_DATABASE:GeoapifyMap}
+
 geoapifyMapBaseUrl: https://maps.geoapify.com/v1/staticmap
 geoapifyApiKey: 30e5ddf7c3be48a799f8e148a6f576f9

@@ -1,7 +1,7 @@
-package api.service;
+package com.miglesias.api.service;
 
-import api.model.GeoapifyMap;
-import api.model.Marker;
+import com.miglesias.api.model.GeoapifyMap;
+import com.miglesias.api.model.Marker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
@@ -21,25 +21,28 @@ public class GeoapifyMapService {
     @Value("${geoapifyMapBaseUrl}")
     private String geoapifyMapBaseUrl;
 
+    @Value("${geoapifyApiKey}")
+    private String geoapifyApiKey;
 
     @Autowired
     public GeoapifyMapService(MongoTemplate mongoTemplate) {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public void addMap(GeoapifyMap geoapifyMap) {
+    public GeoapifyMap addMap(GeoapifyMap geoapifyMap) {
         geoapifyMap.setUrl(generateMapUrl(geoapifyMap));
-        mongoTemplate.save(geoapifyMap);
+        mongoTemplate.save(geoapifyMap, "Maps");
+        return geoapifyMap;
     }
 
     public List<GeoapifyMap> getMaps(List<String> mapNames) {
         Criteria mongoDb = Criteria.where("mapName").in(mapNames);
-        return mongoTemplate.find(new Query().addCriteria(mongoDb), GeoapifyMap.class, "map");
+        return mongoTemplate.find(new Query().addCriteria(mongoDb), GeoapifyMap.class, "Maps");
     }
 
     public long deleteMaps(List<String> mapName) {
         Criteria mongoDb = Criteria.where("mapName").in(mapName);
-        return mongoTemplate.remove(new Query().addCriteria(mongoDb), GeoapifyMap.class, "map").getDeletedCount();
+        return mongoTemplate.remove(new Query().addCriteria(mongoDb), GeoapifyMap.class, "Maps").getDeletedCount();
     }
 
     public GeoapifyMap updateMap(String mapName, GeoapifyMap geoapifyMap) {
@@ -47,7 +50,7 @@ public class GeoapifyMapService {
         Update update = new Update();
 
         update.set("$set", geoapifyMap);
-        return mongoTemplate.findAndModify(new Query().addCriteria(mongoDb), update, new FindAndModifyOptions().returnNew(true), GeoapifyMap.class);
+        return mongoTemplate.findAndModify(new Query().addCriteria(mongoDb), update, new FindAndModifyOptions().returnNew(true), GeoapifyMap.class, "Maps");
     }
 
     private String generateMapUrl(GeoapifyMap geoapifyMap) {
@@ -71,11 +74,10 @@ public class GeoapifyMapService {
             url.append("marker=lonlat:").append(marker.getLonlat()).append(";");
             url.append("type:").append(marker.getType()).append(";");
             url.append("color:").append(marker.getColor()).append(";");
+            url.append("size:").append(marker.getSize()).append(";");
+            url.append("icon;").append(marker.getIcon()).append("&");
         }
-        url.append("width=").append(geoapifyMap.getStyle()).append("&");
-        url.append("width=").append(geoapifyMap.getStyle()).append("&");
-
-
+        url.append("apiKey=").append(geoapifyApiKey);
         return url.toString();
     }
 }
