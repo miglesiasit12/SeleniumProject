@@ -11,9 +11,6 @@ import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @Service
@@ -32,7 +29,7 @@ public class GeoapifyMapService {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public GeoapifyMap addMap(GeoapifyMap geoapifyMap) throws UnsupportedEncodingException {
+    public GeoapifyMap addMap(GeoapifyMap geoapifyMap)  {
         geoapifyMap.setUrl(generateMapUrl(geoapifyMap));
         mongoTemplate.save(geoapifyMap, "Maps");
         return geoapifyMap;
@@ -56,7 +53,7 @@ public class GeoapifyMapService {
         return mongoTemplate.findAndModify(new Query().addCriteria(mongoDb), update, new FindAndModifyOptions().returnNew(true), GeoapifyMap.class, "Maps");
     }
 
-    private String generateMapUrl(GeoapifyMap geoapifyMap) throws UnsupportedEncodingException {
+    private String generateMapUrl(GeoapifyMap geoapifyMap) {
         StringBuilder url = new StringBuilder(geoapifyMapBaseUrl + "?");
         String style = geoapifyMap.getStyle();
         Integer width = geoapifyMap.getWidth();
@@ -75,7 +72,7 @@ public class GeoapifyMapService {
 
         if (marker != null) {
             url.append("marker=lonlat:").append(marker.getLonlat()).append(";");
-            url.append("color:").append(marker.getColor().replace("#", "%23")).append(";");
+            url.append("color:").append(marker.getColor()).append(";");
             url.append("size:").append(marker.getSize()).append(";");
             url.append("type:").append(marker.getType()).append(";");
             url.append("icon:").append(marker.getIcon()).append("&");

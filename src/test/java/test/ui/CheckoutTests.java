@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Tag("ui")
 @ExtendWith(UiExtension.class)
-public class Checkout {
+public class CheckoutTests {
 
     @Test
     public void checkOutNotLoggedInWithBankWire(WebDriver driver) {

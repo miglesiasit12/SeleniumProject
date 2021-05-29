@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Tag("ui")
 @ExtendWith(UiExtension.class)
-public class Authentication {
+public class AuthenticationTests {
 
     @Test
     public void loginAsExistingUser(WebDriver driver) {

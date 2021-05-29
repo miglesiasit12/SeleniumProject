@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Tag("ui")
 @ExtendWith(UiExtension.class)
-public class ShoppingCart {
+public class ShoppingCartTests {
 
     @Test
     public void addProductToCartTest(WebDriver driver) {

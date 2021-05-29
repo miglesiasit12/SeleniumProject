@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Tag("ui")
 @ExtendWith(UiExtension.class)
-public class SearchProducts {
+public class SearchProductsTests {
 
     @BeforeEach
     public void pickFirstProduct(WebDriver driver){

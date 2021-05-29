@@ -1,0 +1,7 @@
+<aspectj>
+    <weaver>
+        <include within="io.qameta..*" />
+        <include within="org.junit..*" />
+        <include within="test..*" />
+    </weaver>
+</aspectj>

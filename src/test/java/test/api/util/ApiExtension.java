@@ -15,6 +15,10 @@ public class ApiExtension implements ParameterResolver {
 
     @Override
     public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-        return given().baseUri(System.getenv("mapApiBaseUrl")).basePath(System.getenv("mapApiBasePath")).port(Integer.parseInt(System.getenv("mapApiPort"))).filter(new AllureRestAssured());
+        return given()
+                .baseUri(System.getenv("mapApiBaseUrl"))
+                .basePath(System.getenv("mapApiBasePath"))
+                .port(Integer.parseInt(System.getenv("mapApiPort")))
+                .contentType("application/json");
     }
 }
