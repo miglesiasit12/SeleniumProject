@@ -5,8 +5,7 @@ plugins {
     id 'org.springframework.boot' version '2.4.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
-sourceCompatibility = 15
-targetCompatibility = 15
+
 
 allure {
     version = '2.14.0'
@@ -65,7 +64,14 @@ bootJar {
     }
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_15
+    targetCompatibility = JavaVersion.VERSION_15
+}
+
 test {
+    sourceCompatibility = JavaVersion.VERSION_15
+    targetCompatibility = JavaVersion.VERSION_15
     useJUnitPlatform {
     }
     environment("browserType", "CHROME")
