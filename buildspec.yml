@@ -1,13 +1,15 @@
 version: 0.2
 
 env:
-   variables:
-     browserType: "CHROME"
-     isRemoteDriverRun: "true"
+  variables:
+    browserType: "CHROME"
+    isRemoteDriverRun: "true"
 phases:
   build:
     commands:
+      - curl -s "https://get.sdkman.io" | bash
+      - source "$HOME/.sdkman/bin/sdkman-init.sh"
+      - sdk install gradle 7.0.2
       - cd Docker
       - docker-compose up -d
-      - sdk install gradle 7.0.2
       - gradlew test
