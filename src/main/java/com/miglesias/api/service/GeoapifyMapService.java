@@ -8,9 +8,9 @@ import org.springframework.data.mongodb.core.FindAndModifyOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -45,12 +45,28 @@ public class GeoapifyMapService {
         return mongoTemplate.remove(new Query().addCriteria(mongoDb), GeoapifyMap.class, "Maps").getDeletedCount();
     }
 
-    public GeoapifyMap updateMap(String mapName, GeoapifyMap geoapifyMap) {
+    public GeoapifyMap updateMap(String mapName, String area, String style, Integer height, Integer width) {
         Criteria mongoDb = Criteria.where("mapName").is(mapName);
-        Update update = new Update();
+        GeoapifyMap geoapifyMap;
 
-        update.set("$set", geoapifyMap);
-        return mongoTemplate.findAndModify(new Query().addCriteria(mongoDb), update, new FindAndModifyOptions().returnNew(true), GeoapifyMap.class, "Maps");
+        geoapifyMap = mongoTemplate.findOne(new Query().addCriteria(mongoDb), GeoapifyMap.class, "Maps");
+        if (geoapifyMap != null) {
+            if (area != null) {
+                geoapifyMap.setArea(area);
+            }
+            if (style != null) {
+                geoapifyMap.setStyle(style);
+            }
+            if (height != null) {
+                geoapifyMap.setHeight(height);
+            }
+            if (width != null) {
+                geoapifyMap.setWidth(width);
+            }
+            geoapifyMap.setUrl(generateMapUrl(geoapifyMap));
+            mongoTemplate.save(geoapifyMap, "maps");
+        }
+        return geoapifyMap;
     }
 
     private String generateMapUrl(GeoapifyMap geoapifyMap) {

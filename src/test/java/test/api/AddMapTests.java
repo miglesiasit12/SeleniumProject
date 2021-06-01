@@ -1,6 +1,7 @@
 package test.api;
 
 import com.miglesias.api.model.GeoapifyMap;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Feature;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.response.Response;
@@ -12,9 +13,9 @@ import test.api.util.ApiExtension;
 import test.api.util.GeoapifyMapUtils;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.everyItem;
-import static org.hamcrest.core.IsEqual.equalTo;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 
 @Feature("GeoApify Map")
 @ExtendWith(ApiExtension.class)
@@ -33,52 +34,63 @@ public class AddMapTests {
                 .body(map)
                 .when().post("/map");
 
-        assertEquals(201, response.getStatusCode(), "Validate Status Code");
+        Allure.step("Verify status code is 201");
+        assertEquals(201, response.getStatusCode());
     }
 
     @Test
     public void addAMapMapNameBlankTest(RequestSpecification requestSpecification) {
         map = map.toBuilder().mapName("").build();
-        given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
+        Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
                 .body(map)
-                .when().post("/map")
-                .then().statusCode(400)
-                .body("errors.fieldName", everyItem(equalTo("mapName")),
-                        "errors.message", everyItem(equalTo("MapName is mandatory")));
+                .when().post("/map");
 
+        assertAll("Validate response and status code",
+                () -> assertEquals(400, response.getStatusCode()),
+                () -> assertEquals("mapName", response.jsonPath().getString("errors[0].fieldName")),
+                () -> assertEquals("MapName is mandatory", response.jsonPath().getString("errors[0].message"))
+        );
     }
 
     @Test
     public void addAMapStyleIncorrectFormatTest(RequestSpecification requestSpecification) {
         map = map.toBuilder().style("abc123").build();
-        given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
+        Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
                 .body(map)
-                .when().post("/map")
-                .then().statusCode(400)
-                .body("errors.fieldName", everyItem(equalTo("style")),
-                        "errors.message", everyItem(equalTo("Styles accepted osm-carto,osm-bright,osm-bright-grey,osm-bright-smooth,klokantech-basic,osm-liberty,maptiler-3d,toner,toner-grey,positron,positron-blue,positron-red,dark-matter,dark-matter-brown,dark-matter-dark-grey,dark-matter-dark-purple,dark-matter-purple-roads,dark-matter-yellow-roads")));
-        ;
+                .when().post("/map");
+
+        assertAll("Validate response and status code",
+                () -> assertEquals(400, response.getStatusCode()),
+                () -> assertEquals("style", response.jsonPath().getString("errors[0].fieldName")),
+                () -> assertEquals("Styles accepted osm-carto,osm-bright,osm-bright-grey,osm-bright-smooth,klokantech-basic,osm-liberty,maptiler-3d,toner,toner-grey,positron,positron-blue,positron-red,dark-matter,dark-matter-brown,dark-matter-dark-grey,dark-matter-dark-purple,dark-matter-purple-roads,dark-matter-yellow-roads", response.jsonPath().getString("errors[0].message"))
+        );
     }
 
     @Test
     public void addAMapAreaIncorrectFormatTest(RequestSpecification requestSpecification) {
         map = map.toBuilder().area("-.21,43g").build();
-        given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
+        Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
                 .body(map)
-                .when().post("/map")
-                .then().statusCode(400)
-                .body("errors.fieldName", everyItem(equalTo("area")),
-                        "errors.message", everyItem(equalTo("Longitude and Latitude Separated by comma")));
+                .when().post("/map");
+
+        assertAll("Validate response and status code",
+                () -> assertEquals(400, response.getStatusCode()),
+                () -> assertEquals("area", response.jsonPath().getString("errors[0].fieldName")),
+                () -> assertEquals("Longitude and Latitude Separated by comma", response.jsonPath().getString("errors[0].message"))
+        );
     }
 
     @Test
     public void addAMapMarkerColorIncorrectFormatTest(RequestSpecification requestSpecification) {
         map = map.toBuilder().marker(map.getMarker().toBuilder().color("#9999999999").build()).build();
-        given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
+        Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
                 .body(map)
-                .when().post("/map")
-                .then().statusCode(400)
-                .body("errors.fieldName", everyItem(equalTo("marker.color")),
-                        "errors.message", everyItem(equalTo("marker color names allowed blue|red|green|purple|black|yellow")));
+                .when().post("/map");
+
+        assertAll("Validate response and status code",
+                () -> assertEquals(400, response.getStatusCode()),
+                () -> assertEquals("marker.color", response.jsonPath().getString("errors[0].fieldName")),
+                () -> assertEquals("marker color names allowed blue|red|green|purple|black|yellow", response.jsonPath().getString("errors[0].message"))
+        );
     }
 }

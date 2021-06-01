@@ -1,6 +1,5 @@
 package test.api.util;
 
-import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.extension.*;
 

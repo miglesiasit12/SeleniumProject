@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.websocket.server.PathParam;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -62,13 +63,17 @@ public class MapController {
         }
     }
 
-    @PatchMapping("/map")
+    @PatchMapping("/map/{mapName}")
     @ApiOperation("Update a map")
-    public ResponseEntity<GeoapifyMap> updateMap(@RequestParam(value = "mapName") String mapName, @RequestBody GeoapifyMap geoapifyMap) {
-        GeoapifyMap updatedMap = geoapifyMapService.updateMap(mapName, geoapifyMap);
+    public ResponseEntity<GeoapifyMap> updateMap(@PathVariable(value = "mapName") String mapName,
+                                                 @RequestParam(required = false) String area,
+                                                 @RequestParam(required = false) String style,
+                                                 @RequestParam(required = false) Integer height,
+                                                 @RequestParam(required = false) Integer width) {
+        GeoapifyMap updatedMap = geoapifyMapService.updateMap(mapName, area, style, height, width);
 
         if (updatedMap != null) {
-            return ResponseEntity.status(HttpStatus.GONE).body(updatedMap);
+            return ResponseEntity.status(HttpStatus.OK).body(updatedMap);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_MODIFIED).body(new GeoapifyMap());
         }

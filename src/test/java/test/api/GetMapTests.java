@@ -1,8 +1,8 @@
 package test.api;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.miglesias.api.model.GeoapifyMap;
+import io.qameta.allure.Allure;
+import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -17,24 +17,28 @@ import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
 @ExtendWith(ApiExtension.class)
 public class GetMapTests {
 
     @Test
-    public void getMapTest(RequestSpecification requestSpecification)  {
+    public void getMapTest(RequestSpecification requestSpecification) {
         GeoapifyMap map = GeoapifyMapUtils.createMap(600, 800);
         given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
                 .body(map)
                 .when().post("/map")
                 .then().statusCode(equalTo(201));
 
-        given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("get map"))
+        Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("get map"))
                 .queryParam("mapNames", Collections.singletonList(map.getMapName()))
-                .when().get("/map")
-                .then().statusCode(200)
-                .body("maps.mapName", hasItem(map.getMapName()));
+                .when().get("/map");
+
+        Allure.step("Verify status code and map name matches");
+        assertEquals(200, response.getStatusCode());
+        assertEquals(map.getMapName(), response.jsonPath().getString("maps[0].mapName"));
     }
 
     @Test
@@ -52,18 +56,25 @@ public class GetMapTests {
             mapsToGet.add(map.getMapName());
             maps.add(map);
         }
-
-        given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("get maps"))
+        Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("get maps"))
                 .queryParam("mapNames", mapsToGet)
-                .when().get("/map")
-                .then().statusCode(200).body("maps.mapName", hasItems(maps.get(0).getMapName(), maps.get(1).getMapName()));
+                .when().get("/map");
+
+        Allure.step("Verify status code and map names match");
+        assertEquals(200, response.getStatusCode());
+        assertAll("Validate Response body array",
+                () -> assertEquals(maps.get(0).getMapName(), response.jsonPath().getString("maps[0].mapName")),
+                () -> assertEquals(maps.get(1).getMapName(), response.jsonPath().getString("maps[1].mapName"))
+        );
     }
 
     @Test
     public void getMapNoneExistTest(RequestSpecification requestSpecification) {
-        given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("get map"))
+        Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("get map"))
                 .queryParam("mapNames", Collections.singletonList(""))
-                .when().get("/map")
-                .then().statusCode(404);
+                .when().get("/map");
+
+        Allure.step("Verify status code is 404");
+        assertEquals(404, response.getStatusCode());
     }
 }
