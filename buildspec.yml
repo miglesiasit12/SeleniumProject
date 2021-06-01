@@ -12,4 +12,5 @@ phases:
     commands:
       - cd Docker
       - docker-compose up -d
+      - cd Projects
       - gradle test
