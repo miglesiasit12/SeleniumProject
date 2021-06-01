@@ -8,6 +8,7 @@ phases:
   install:
     commands:
       - curl -s "https://get.sdkman.io" | bash && source "/root/.sdkman/bin/sdkman-init.sh" && sdk install gradle 7.0.2
+      - apt-get update && apt-get install openjdk-15-jdk
   build:
     commands:
       - cd Docker

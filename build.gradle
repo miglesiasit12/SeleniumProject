@@ -57,8 +57,8 @@ configurations {
 }
 
 bootJar {
-    mainClass = 'com.miglesias.api.MapApplication'
-    archiveBaseName = 'Michael-Iglesias'
+    mainClassName('com.miglesias.api.MapApplication')
+    archivesBaseName('Michael-Iglesias')
     manifest {
         attributes 'Start-Class': 'com.miglesias.api.MapApplication'
     }
@@ -72,8 +72,7 @@ java {
 test {
     sourceCompatibility = JavaVersion.VERSION_15
     targetCompatibility = JavaVersion.VERSION_15
-    useJUnitPlatform {
-    }
+    useJUnitPlatform {}
     environment("browserType", "CHROME")
     environment("isRemoteDriverRun", true)
     environment("remoteWebDriverHost", "http://localhost:4444/wd/hub")
