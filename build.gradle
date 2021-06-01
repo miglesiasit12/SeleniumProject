@@ -5,15 +5,12 @@ plugins {
     id 'org.springframework.boot' version '2.4.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
-sourceCompatibility = 15
-targetCompatibility = 15
 
 allure {
     version = '2.14.0'
     autoconfigure = false
     aspectjweaver = true
     aspectjVersion = '1.9.6'
-    clean = true
     allureJavaVersion = '2.14.0'
     resultsDir = file('/allure/allure-results')
     reportDir = file('/allure/allure-report')
@@ -70,7 +67,7 @@ test {
     useJUnitPlatform {
     }
     environment("browserType", "CHROME")
-    environment("isRemoteDriverRun", false)
+    environment("isRemoteDriverRun", true)
     environment("remoteWebDriverHost", "http://localhost:4444/wd/hub")
     environment("mapApiBaseUrl", "http://localhost")
     environment("mapApiBasePath", "/api/v1")

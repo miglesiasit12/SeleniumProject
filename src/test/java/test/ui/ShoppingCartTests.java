@@ -29,7 +29,7 @@ public class ShoppingCartTests {
         WebElement cartItemTitle = addedToCartPage.getCartItemTitle();
 
         womenCategoryPage.addFirstWomenProductToCart();
-        new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(cartItemTitle));
+        new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(cartItemTitle));
 
         assertAll("Validate item in cart",
                 () -> assertEquals("There is 1 item in your cart.", addedToCartPage.getCartProductHeader().getText(), "Verify 1 Item was added to cart"),
@@ -46,9 +46,9 @@ public class ShoppingCartTests {
         WebElement shoppingCartWarning = shoppingCartPage.getShoppingCartWarning();
 
         womenCategoryPage.addFirstWomenProductToCart();
-        new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(addedToCartPage.getProceedToCheckoutButton())).click();
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(addedToCartPage.getProceedToCheckoutButton())).click();
         shoppingCartPage.getTrashCanIcon().click();
-        new WebDriverWait(driver, 2).until(ExpectedConditions.visibilityOf(shoppingCartWarning));
+        new WebDriverWait(driver, 5).until(ExpectedConditions.visibilityOf(shoppingCartWarning));
 
         assertEquals("Your shopping cart is empty.", shoppingCartWarning.getText(), "Verify shopping cart is emptied if only item is deleted");
         Allure.getLifecycle().addAttachment("Shopping Cart", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));

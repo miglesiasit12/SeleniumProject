@@ -1,7 +1,12 @@
 version: 0.2
 
+env:
+   variables:
+     browserType: "CHROME"
+     isRemoteDriverRun: "true"
 phases:
   build:
     commands:
       - cd Docker
       - docker-compose up -d
+      - gradlew test

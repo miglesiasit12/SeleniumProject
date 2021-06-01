@@ -29,7 +29,7 @@ public class CheckoutTests {
         PaymentPage paymentPage = new PaymentPage(driver);
 
         womenCategoryPage.addFirstWomenProductToCart();
-        new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(addedToCartPage.getProceedToCheckoutButton())).click();
+        new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(addedToCartPage.getProceedToCheckoutButton())).click();
         shoppingCartPage.getProceedToCheckoutButton().click();
         authenticationPage.login();
         addressPage.getProceedToCheckoutButton().click();
