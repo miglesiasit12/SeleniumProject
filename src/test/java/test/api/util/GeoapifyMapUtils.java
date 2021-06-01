@@ -5,11 +5,13 @@ import com.miglesias.api.model.GeoapifyMap;
 import com.miglesias.api.model.Marker;
 import io.qameta.allure.Allure;
 
+import java.util.UUID;
+
 public class GeoapifyMapUtils {
 
     public static GeoapifyMap createMap(int width, int height) {
         Faker faker = new Faker();
-        String mapName = faker.funnyName().name();
+        String mapName = UUID.randomUUID().toString();
         String area = faker.address().longitude() + "," + faker.address().latitude();
         String style = "osm-bright-smooth";
         String color = "blue";

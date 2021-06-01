@@ -56,6 +56,10 @@ configurations {
     }
 }
 
+springBoot {
+    mainClass = 'com.miglesias.api.MapApplication'
+}
+
 test {
     useJUnitPlatform {
     }
