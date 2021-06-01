@@ -9,4 +9,5 @@ phases:
     commands:
       - cd Docker
       - docker-compose up -d
+      - sdk install gradle 7.0.2
       - gradlew test
