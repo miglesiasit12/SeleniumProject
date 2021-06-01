@@ -5,6 +5,8 @@ plugins {
     id 'org.springframework.boot' version '2.4.4'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 }
+sourceCompatibility = 15
+targetCompatibility = 15
 
 allure {
     version = '2.14.0'
@@ -56,8 +58,12 @@ configurations {
     }
 }
 
-springBoot {
+bootJar {
     mainClass = 'com.miglesias.api.MapApplication'
+    archiveBaseName = 'Michael-Iglesias'
+    manifest {
+        attributes 'Start-Class': 'com.miglesias.api.MapApplication'
+    }
 }
 
 test {

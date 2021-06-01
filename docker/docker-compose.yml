@@ -1,0 +1,16 @@
+version: "3.7"
+services:
+  api:
+    build:
+      context: ..
+      dockerfile: /Dockerfile
+    image: app
+    ports:
+      - "8080:8080"
+  api-tests:
+    image: app
+    command: dockerize
+      -wait tcp://api:8080 -timeout 10s
+      bash -c "gradle test"
+    depends_on:
+      - api
