@@ -9,6 +9,7 @@ phases:
     commands:
       - curl -s "https://get.sdkman.io" | bash
       - source "/root/.sdkman/bin/sdkman-init.sh"
+      - sdk help
       - sdk install gradle 7.0.2
       - cd Docker
       - docker-compose up -d
