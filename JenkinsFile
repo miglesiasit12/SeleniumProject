@@ -1,9 +1,8 @@
 pipeline {
 
-    stages("Pipeline") {
-        stage("") {
+    agent 'build'
 
-        }
+    stages("Pipeline") {
         stage("Initialize Containers") {
             steps {
                 sh "docker pull selenoid/chrome:91.0 && docker pull selenoid/video-recorder:latest-release"
