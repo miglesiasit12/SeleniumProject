@@ -81,8 +81,8 @@ test {
     }
     environment("browserType", "CHROME")
     environment("isRemoteDriverRun", true)
-    environment("remoteWebDriverHost", "http://0.0.0.0:4444/wd/hub")
-    environment("mapApiBaseUrl", "http://0.0.0.0")
+    environment("remoteWebDriverHost", "http://172.28.1.4:4444/wd/hub")
+    environment("mapApiBaseUrl", "http://172.28.1.2")
     environment("mapApiBasePath", "/api/v1")
     environment("mapApiPort", "8080")
 }
