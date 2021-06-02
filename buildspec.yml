@@ -14,4 +14,4 @@ phases:
     commands:
       - docker pull selenoid/chrome:91.0 && docker pull selenoid/video-recorder:latest-release
       - cd Docker
-      - docker-compose up -d && cd .. && gradle -DremoteWebDriverHost="http://0.0.0.0:4444/wd/hub" -DmapApiBaseUrl="http://0.0.0.0" test
+      - docker-compose up -d && cd .. && gradle -DremoteWebDriverHost="http://localhost:4444/wd/hub" -DmapApiBaseUrl="http://localhost" test
