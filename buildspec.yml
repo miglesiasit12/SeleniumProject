@@ -4,8 +4,8 @@ env:
   variables:
     browserType: "CHROME"
     isRemoteDriverRun: "true"
-    remoteWebDriverHost: http://192.168.0.0/wd/hub
-    mapApiBaseUrl: http://192.168.0.0
+    remoteWebDriverHost: http://localhost:4444/wd/hub
+    mapApiBaseUrl: http://localhost
 phases:
   install:
     commands:
