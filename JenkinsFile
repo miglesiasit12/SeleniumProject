@@ -1,0 +1,19 @@
+pipeline {
+
+    stages("Pipeline") {
+        stage("") {
+
+        }
+        stage("Initialize Containers") {
+            steps {
+                sh "docker pull selenoid/chrome:91.0 && docker pull selenoid/video-recorder:latest-release"
+                sh "cd Docker && docker-compose up -d"
+            }
+        }
+        stage("Run Tests") {
+            steps {
+                sh "cd .. && gradle -DremoteWebDriverHost=\"http://localhost:4444/wd/hub\" -DmapApiBaseUrl=\"http://localhost\" test"
+            }
+        }
+    }
+}
