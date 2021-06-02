@@ -14,7 +14,7 @@ phases:
     commands:
       - cd Docker
       - docker-compose up -d
-      - docker inspect --format '{{ .NetworkSettings.IPAddress }}' api
-      - docker inspect --format '{{ .NetworkSettings.IPAddress }}' selenoid
+      - docker inspect --format '{{ .NetworkSettings.IPAddress }}' docker_api_1
+      - docker inspect --format '{{ .NetworkSettings.IPAddress }}' docker_selenoid_1
       - cd ..
       - gradle test
