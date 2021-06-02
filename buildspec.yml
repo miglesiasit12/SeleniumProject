@@ -13,6 +13,7 @@ phases:
   build:
     commands:
       - docker pull selenoid/chrome:91.0 && docker pull selenoid/video-recorder:latest-release
+      - docker network create -d bridge selenoid
       - cd Docker
       - docker-compose up -d
       - cd ..
