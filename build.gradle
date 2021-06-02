@@ -76,6 +76,9 @@ test {
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
     useJUnitPlatform {}
+    testLogging {
+        showStandardStreams = true
+    }
     environment("browserType", "CHROME")
     environment("isRemoteDriverRun", true)
     environment("remoteWebDriverHost", "http://127.0.0.1:4444/wd/hub")
