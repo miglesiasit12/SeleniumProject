@@ -16,3 +16,5 @@ phases:
       - docker network create -d bridge selenoid
       - cd Docker
       - docker-compose up -d
+      - cd ..
+      - gradle test
