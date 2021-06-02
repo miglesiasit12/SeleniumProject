@@ -12,18 +12,17 @@ public class WebDriverFactory {
         WebDriver driver = null;
 
         switch (webDriverType) {
-            case CHROME -> {
+            case CHROME :
                 WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
-            }
-            case FIREFOX -> {
+                break;
+            case FIREFOX :
                 WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
-            }
-            case EDGE -> {
+                break;
+            case EDGE :
                 WebDriverManager.iedriver().setup();
                 driver = new InternetExplorerDriver();
-            }
         }
         return driver;
     }

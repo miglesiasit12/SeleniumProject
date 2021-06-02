@@ -57,21 +57,24 @@ configurations {
 }
 
 bootJar {
-    mainClassName('com.miglesias.api.MapApplication')
-    archivesBaseName('Michael-Iglesias')
-    manifest {
-        attributes 'Start-Class': 'com.miglesias.api.MapApplication'
+    bootJarMainClassName {
+        'com.miglesias.api.MapApplication'
     }
+    //manifest
+    //archivesBaseName('Michael-Iglesias')
+    //manifest {
+     //   attributes 'Start-Class': 'com.miglesias.api.MapApplication'
+  //  }
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_15
-    targetCompatibility = JavaVersion.VERSION_15
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
 }
 
 test {
-    sourceCompatibility = JavaVersion.VERSION_15
-    targetCompatibility = JavaVersion.VERSION_15
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
     useJUnitPlatform {}
     environment("browserType", "CHROME")
     environment("isRemoteDriverRun", true)

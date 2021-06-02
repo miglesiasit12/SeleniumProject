@@ -19,9 +19,15 @@ public class RemoteWebDriverFactory {
         desiredCapabilities.setCapability("enableVNC", true);
         desiredCapabilities.setCapability("enableVideo", true);
         switch (webDriverType) {
-            case CHROME -> desiredCapabilities.setBrowserName("chrome");
-            case FIREFOX -> desiredCapabilities.setBrowserName("firefox");
-            case EDGE -> desiredCapabilities.setBrowserName("edge");
+            case CHROME:
+                desiredCapabilities.setBrowserName("chrome");
+                break;
+            case FIREFOX:
+                desiredCapabilities.setBrowserName("firefox");
+                break;
+            case EDGE:
+                desiredCapabilities.setBrowserName("edge");
+                break;
         }
         do try {
             driver = new RemoteWebDriver(new URL(System.getenv("remoteWebDriverHost")), desiredCapabilities);
