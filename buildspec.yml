@@ -18,4 +18,4 @@ phases:
       - cd Docker
       - docker-compose up -d
       - cd ..
-      - gradle test -DremoteWebDriverHost=http://$ipAddress:4444/wd/hub -DmapApiBaseUrl=http://$ipAddress
+      - gradle -DremoteWebDriverHost=http://$ipAddress:4444/wd/hub -DmapApiBaseUrl=http://$ipAddress test
