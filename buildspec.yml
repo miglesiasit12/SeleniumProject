@@ -12,5 +12,7 @@ phases:
     commands:
       - cd Docker
       - docker-compose up -d
+      - echo docker inspect --format '{{ .NetworkSettings.IPAddress }}' api
+      - echo docker inspect --format '{{ .NetworkSettings.IPAddress }}' api
       - cd ..
       - gradle test

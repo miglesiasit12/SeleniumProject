@@ -78,8 +78,8 @@ test {
     useJUnitPlatform {}
     environment("browserType", "CHROME")
     environment("isRemoteDriverRun", true)
-    environment("remoteWebDriverHost", "http://localhost:4444/wd/hub")
-    environment("mapApiBaseUrl", "http://localhost")
+    environment("remoteWebDriverHost", "http://127.0.0.1:4444/wd/hub")
+    environment("mapApiBaseUrl", "http://127.0.0.1")
     environment("mapApiBasePath", "/api/v1")
     environment("mapApiPort", "8080")
 }
