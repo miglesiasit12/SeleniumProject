@@ -9,7 +9,7 @@ env:
 phases:
   install:
     commands:
-      - yum install bind-utils -y
+      - yum install net-tools -y
       - ipAddress=$(hostname -I)
       - curl -s "https://get.sdkman.io" | bash && source /root/.sdkman/bin/sdkman-init.sh && sdk install gradle 7.0.2 && sdk install java 11.0.11.hs-adpt
   build:
