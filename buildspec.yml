@@ -7,7 +7,7 @@ env:
 phases:
   install:
     commands:
-      - rpm --import https://yum.corretto.aws/corretto.key && curl -L -o /etc/yum.repos.d/corretto.repo \
+      - rpm --import http://yum.corretto.aws/corretto.key && curl -L -o /etc/yum.repos.d/corretto.repo \
         https://yum.corretto.aws/corretto.repo4 && yum install -y java-15-amazon-corretto-devel
       - curl -s "https://get.sdkman.io" | bash && source "/root/.sdkman/bin/sdkman-init.sh" && sdk install gradle 7.0.2
       - yum -y install java-15-amazon-corretto-devel
