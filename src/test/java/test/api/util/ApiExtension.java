@@ -17,13 +17,13 @@ public class ApiExtension implements ParameterResolver {
 
     @Override
     public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) throws ParameterResolutionException {
-        String baseUrl = System.getenv("mapApiBaseUrl");
+        String baseUrl = System.getProperty("mapApiBaseUrl");
 
         System.out.println("Connecting to: " + baseUrl);
         return given()
-                .baseUri(System.getenv("mapApiBaseUrl"))
-                .basePath(System.getenv("mapApiBasePath"))
-                .port(Integer.parseInt(System.getenv("mapApiPort")))
+                .baseUri(System.getProperty("mapApiBaseUrl"))
+                .basePath(System.getProperty("mapApiBasePath"))
+                .port(Integer.parseInt(System.getProperty("mapApiPort")))
                 .contentType("application/json");
     }
 }

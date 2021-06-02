@@ -13,7 +13,7 @@ public class RemoteWebDriverFactory {
         RemoteWebDriver driver = null;
         boolean retry = false;
         int retryTimes = 0;
-        String url = System.getenv("remoteWebDriverHost");
+        String url = System.getProperty("remoteWebDriverHost");
 
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setAcceptInsecureCerts(true);

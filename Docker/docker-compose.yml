@@ -1,15 +1,12 @@
 version: "3.7"
 services:
   selenoid:
+    network_mode: bridge
     image: aerokube/selenoid:latest-release
     volumes:
       - ".:/etc/selenoid"
       - "/var/run/docker.sock:/var/run/docker.sock"
-    command: [ "-conf", "/etc/selenoid/browsers.json", "-log-output-dir", "/opt/selenoid/logs", "-container-network", "selenoid" ]
-    networks:
-      selenoid:
-      testing_net:
-        ipv4_address: 172.28.1.4
+    command: [ "-conf", "/etc/selenoid/browsers.json", "-log-output-dir", "/opt/selenoid/logs"]
     ports:
       - "4444:4444"
   api:
@@ -17,17 +14,5 @@ services:
       context: .
       dockerfile: Dockerfile
     image: app
-    networks:
-      testing_net:
-        ipv4_address: 172.28.1.2
     ports:
       - "8080:8080"
-networks:
-  selenoid:
-    external:
-      name: selenoid
-  testing_net:
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.28.0.0/16

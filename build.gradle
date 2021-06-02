@@ -60,11 +60,6 @@ bootJar {
     bootJarMainClassName {
         'com.miglesias.api.MapApplication'
     }
-    //manifest
-    //archivesBaseName('Michael-Iglesias')
-    //manifest {
-     //   attributes 'Start-Class': 'com.miglesias.api.MapApplication'
-  //  }
 }
 
 java {
@@ -79,12 +74,12 @@ test {
     testLogging {
         showStandardStreams = true
     }
-    environment("browserType", "CHROME")
-    environment("isRemoteDriverRun", true)
-    environment("remoteWebDriverHost", "http://172.28.1.4:4444/wd/hub")
-    environment("mapApiBaseUrl", "http://172.28.1.2")
-    environment("mapApiBasePath", "/api/v1")
-    environment("mapApiPort", "8080")
+    systemProperty "browserType", System.getProperty("browserType") ?: "CHROME"
+    systemProperty "isRemoteDriverRun", System.getProperty("isRemoteDriverRun") ?: true
+    systemProperty "remoteWebDriverHost", System.getProperty("remoteWebDriverHost") ?: "http://localhost:4444/wd/hub"
+    systemProperty "mapApiBaseUrl", System.getProperty("mapApiBaseUrl") ?: "http://localhost"
+    systemProperty "mapApiBasePath", System.getProperty("mapApiBasePath") ?: "/api/v1"
+    systemProperty "mapApiPort", System.getProperty("mapApiPort") ?: "8080"
 }
 
 

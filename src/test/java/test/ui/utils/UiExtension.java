@@ -28,10 +28,10 @@ public class UiExtension implements BeforeEachCallback, AfterEachCallback, Param
     @Override
     public void beforeEach(ExtensionContext context) {
         WebDriver webDriver;
-        if (Boolean.valueOf(System.getenv().get("isRemoteDriverRun")).equals(true)){
-            webDriver = RemoteWebDriverFactory.getWebDriver(WebDriverType.valueOf(System.getenv().get("browserType")));
+        if (Boolean.valueOf(System.getProperty("isRemoteDriverRun")).equals(true)){
+            webDriver = RemoteWebDriverFactory.getWebDriver(WebDriverType.valueOf(System.getProperty("browserType")));
         } else {
-            webDriver = WebDriverFactory.getWebDriver(WebDriverType.valueOf(System.getenv().get("browserType")));
+            webDriver = WebDriverFactory.getWebDriver(WebDriverType.valueOf(System.getProperty("browserType")));
         }
 
         webDriver.get("http://www.automationpractice.com/");

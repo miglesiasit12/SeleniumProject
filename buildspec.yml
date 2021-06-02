@@ -9,12 +9,12 @@ env:
 phases:
   install:
     commands:
+      - ipAddress=$(hostname -I)
       - curl -s "https://get.sdkman.io" | bash && source /root/.sdkman/bin/sdkman-init.sh && sdk install gradle 7.0.2 && sdk install java 11.0.11.hs-adpt
   build:
     commands:
       - docker pull selenoid/chrome:91.0 && docker pull selenoid/video-recorder:latest-release
-      - docker network create -d bridge selenoid
       - cd Docker
       - docker-compose up -d
       - cd ..
-      - gradle test
+      - gradle test -DremoteWebDriverHost=http://$ipAddress:4444/wd/hub -DmapApiBaseUrl=http://$ipAddress
