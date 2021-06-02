@@ -7,7 +7,7 @@ env:
 phases:
   install:
     commands:
-      - curl -s "https://get.sdkman.io" | bash && source "/root/.sdkman/bin/sdkman-init.sh" && sdk install gradle 7.0.2
+      - curl -s "https://get.sdkman.io" | bash && . "/root/.sdkman/bin/sdkman-init.sh" && sdk install gradle 7.0.2
       - wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | sudo apt-key add - && add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ && apt-get install adoptopenjdk-15-hotspot
   build:
     commands:
