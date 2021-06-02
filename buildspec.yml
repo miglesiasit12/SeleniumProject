@@ -7,7 +7,7 @@ env:
 phases:
   install:
     commands:
-      - curl -s "https://get.sdkman.io" | bash && source /root/.sdkman/bin/sdkman-init.sh && sdk install gradle 7.0.2 && sdk list java && sdk install java 11.0.9.open-adpt
+      - curl -s "https://get.sdkman.io" | bash && source /root/.sdkman/bin/sdkman-init.sh && sdk install gradle 7.0.2 && sdk install java 11.0.11.hs-adpt
   build:
     commands:
       - cd Docker
