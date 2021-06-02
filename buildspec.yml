@@ -4,15 +4,18 @@ env:
   variables:
     browserType: "CHROME"
     isRemoteDriverRun: "true"
+    remoteWebDriverHost: http://192.168.0.0/wd/hub
+    mapApiBaseUrl: http://192.168.0.0
 phases:
   install:
     commands:
       - curl -s "https://get.sdkman.io" | bash && source /root/.sdkman/bin/sdkman-init.sh && sdk install gradle 7.0.2 && sdk install java 11.0.11.hs-adpt
   build:
     commands:
+      - docker network create -d bridge --subnet 192.168.0.0/0 --gateway 192.168.0.0 dockernet
       - cd Docker
       - docker-compose up -d
-      - echo docker inspect --format '{{ .NetworkSettings.IPAddress }}' api
-      - echo docker inspect --format '{{ .NetworkSettings.IPAddress }}' api
+      - docker inspect --format '{{ .NetworkSettings.IPAddress }}' api
+      - docker inspect --format '{{ .NetworkSettings.IPAddress }}' selenoid
       - cd ..
       - gradle test

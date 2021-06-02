@@ -13,6 +13,7 @@ public class RemoteWebDriverFactory {
         RemoteWebDriver driver = null;
         boolean retry = false;
         int retryTimes = 0;
+        String url = System.getenv("remoteWebDriverHost");
 
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
         desiredCapabilities.setAcceptInsecureCerts(true);
@@ -29,8 +30,9 @@ public class RemoteWebDriverFactory {
                 desiredCapabilities.setBrowserName("edge");
                 break;
         }
+        System.out.println("Connecting to: " + url);
         do try {
-            driver = new RemoteWebDriver(new URL(System.getenv("remoteWebDriverHost")), desiredCapabilities);
+            driver = new RemoteWebDriver(new URL(url), desiredCapabilities);
             driver.setFileDetector(new LocalFileDetector());
         } catch (Exception e) {
             e.printStackTrace();
