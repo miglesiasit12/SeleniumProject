@@ -1,9 +1,5 @@
 pipeline {
 
-    environment {
-        PATH = "$PATH:/usr/local/bin/docker-compose"
-    }
-
     agent any
 
     stages {
@@ -11,23 +7,12 @@ pipeline {
             steps {
                 checkout([$class           : 'GitSCM',
                           branches         : [[name: '*/master']],
-                          userRemoteConfigs: [[url: 'https://github.com/miglesiasit12/toptaltask.git', credentialsId: '394eea51-a615-48ab-a5aa-304bbbbebaab']]])
-            }
-        }
-        stage("Initialize Containers") {
-            steps {
-                sh "docker pull selenoid/chrome:91.0 && docker pull selenoid/video-recorder:latest-release"
-                sh "cd Docker && docker-compose up -d"
+                          userRemoteConfigs: [[url: 'https://github.com/miglesiasit12/toptaltask.git', credentialsId: 'github']]])
             }
         }
         stage("Run Tests") {
-            agent {
-                docker {
-                    image 'gradle:jdk11'
-                }
-            }
             steps {
-                sh "cd .. && gradle -DremoteWebDriverHost=\"http://localhost:4444/wd/hub\" -DmapApiBaseUrl=\"http://localhost\" -mapApiPort=\"8000\" test"
+                sh "gradle -DremoteWebDriverHost=\"http://localhost:4444/wd/hub\" -DmapApiBaseUrl=\"http://localhost\" -DmapApiPort=8000 test"
             }
         }
     }
