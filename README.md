@@ -35,3 +35,5 @@ The requirements for the test project are:
   The responses all returned 200 ok and expected bodies.
 
 The results and test plan are located in src/test/resources/LoadTesting
+
+Html results http://allureresults.s3-website.us-east-2.amazonaws.com/#
