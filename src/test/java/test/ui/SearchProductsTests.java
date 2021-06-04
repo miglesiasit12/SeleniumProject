@@ -29,7 +29,7 @@ public class SearchProductsTests {
         CategoryPage categoryPage = new CategoryPage(driver);
 
         categoryBarPage.getWomenCategoryButton().click();
-        assertEquals("Women", categoryPage.getCategoryTitle().getText(), "Verify the Women category button returns the Women test.ui.page");
+        assertEquals("Women", categoryPage.getCategoryTitle().getText(), "Verify the Women category button returns the Women page");
         Allure.getLifecycle().addAttachment("Women Category", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));
     }
 
@@ -39,7 +39,7 @@ public class SearchProductsTests {
         CategoryPage categoryPage = new CategoryPage(driver);
 
         categoryBarPage.getDressesCategoryButton().click();
-        assertEquals("Dresses", categoryPage.getCategoryTitle().getText(), "Verify the Dresses category button returns the Dresses test.ui.page");
+        assertEquals("Dresses", categoryPage.getCategoryTitle().getText(), "Verify the Dresses category button returns the Dresses page");
         Allure.getLifecycle().addAttachment("Dress Category", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));
     }
 
@@ -49,7 +49,7 @@ public class SearchProductsTests {
         CategoryPage categoryPage = new CategoryPage(driver);
 
         categoryBarPage.getTshirtsCategoryButton().click();
-        assertEquals("T-shirts", categoryPage.getCategoryTitle().getText(), "Verify the T-Shirts category button returns the T-Shirts test.ui.page");
+        assertEquals("T-shirts", categoryPage.getCategoryTitle().getText(), "Verify the T-Shirts category button returns the T-Shirts page");
         Allure.getLifecycle().addAttachment("T-Shirt Category", "image/png",".png", ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES));
     }
 }
