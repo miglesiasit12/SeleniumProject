@@ -22,6 +22,7 @@ The requirements for the test project are:
  * Report any bugs you find by writing a bug ticket
 
 3) Pick a random web application and create a load test with a tool of your choice but using an HTTP/S protocol. Load test needs to simulate 1000 users who will visit the homepage in a period of 15s. Measure web application response time before and during the test run.
+  
   a) Explain the test in details
   1 request is sent before sending the 1000 user requests over 15 seconds and 1 request after. This is repeated for the GET index.html(homepage) and OPTIONS bycat path to compare the difference in response time. 
 
