@@ -13,8 +13,8 @@ allure {
     aspectjweaver = true
     aspectjVersion = '1.9.6'
     allureJavaVersion = '2.14.0'
-    resultsDir = file('/allure/allure-results')
-    reportDir = file('/allure/allure-report')
+    resultsDir = file('./allure/allure-results')
+    reportDir = file('./allure/allure-report')
     //downloadLink = "http://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.14.0/allure-commandline-2.14.0.zip"
 }
 
@@ -83,7 +83,7 @@ test {
     systemProperty "remoteWebDriverHost", System.getProperty("remoteWebDriverHost") ?: "http://localhost:4444/wd/hub"
     systemProperty "mapApiBaseUrl", System.getProperty("mapApiBaseUrl") ?: "http://localhost"
     systemProperty "mapApiBasePath", System.getProperty("mapApiBasePath") ?: "/api/v1"
-    systemProperty "mapApiPort", System.getProperty("mapApiPort") ?: "8080"
+    systemProperty "mapApiPort", System.getProperty("mapApiPort") ?: "8000"
 }
 
 
