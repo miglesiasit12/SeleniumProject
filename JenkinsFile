@@ -16,4 +16,9 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            allure results: [[path: 'build/reports/allure/allure-results']]
+        }
+    }
 }
