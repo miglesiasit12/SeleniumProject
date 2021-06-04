@@ -24,17 +24,17 @@ The requirements for the test project are:
 3) Pick a random web application and create a load test with a tool of your choice but using an HTTP/S protocol. Load test needs to simulate 1000 users who will visit the homepage in a period of 15s. Measure web application response time before and during the test run.
   
   a) Explain the test in details\
-  1 request is sent before sending the 1000 user requests over 15 seconds and 1 request after. This is repeated for the GET index.html(homepage) and OPTIONS bycat path to compare the difference in response time.\ 
+  1 request is sent before sending the 1000 user requests over 15 seconds and 1 request after. This is repeated for the GET index.html(homepage) and OPTIONS bycat path to compare the difference in response time.
 
   b) Did the load test have an impact on web application response time?\
-  No impact on the application's response time before and after\
+  No impact on the application's response time before and after
 
   c) What is the optimal application response time for modern day web applications?\
-  0.1 seconds is optimal, under 2 seconds is acceptable\
+  0.1 seconds is optimal, under 2 seconds is acceptable
 
   d) Analyze few HTTP/S responses\
-  The responses all returned 200 ok and expected bodies.\
+  The responses all returned 200 ok and expected bodies.
 
-The results and test plan are located in src/test/resources/LoadTesting\
+The results and test plan are located in src/test/resources/LoadTesting
 
-Html results http://allureresults.s3-website.us-east-2.amazonaws.com/#\
+Html results http://allureresults.s3-website.us-east-2.amazonaws.com/#
