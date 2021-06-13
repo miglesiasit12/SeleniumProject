@@ -1,2 +1,0 @@
-timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
-1622514802338,166,View Homepage1,200,OK,1 user Visits Homepage 1-1,text,true,,4835,129,1,14,https://www.demoblaze.com/index.html,166,0,138

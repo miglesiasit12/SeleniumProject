@@ -1,0 +1,16 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1622514802435,158,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,219,251,1,19,https://api.demoblaze.com/bycat,158,0,81
+1623611299301,261,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,219,251,1,21,https://api.demoblaze.com/bycat,261,0,105
+1623611557985,265,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,219,251,1,25,https://api.demoblaze.com/bycat,265,0,118
+1623611693038,230,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,219,251,1,51,https://api.demoblaze.com/bycat,230,0,73
+1623611770151,1238,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,219,251,1,355,https://api.demoblaze.com/bycat,1238,0,1042
+1623612474633,310,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,219,251,1,50,https://api.demoblaze.com/bycat,310,0,142
+1623612602376,145,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,223,251,1,30,https://api.demoblaze.com/bycat,145,0,64
+1623612940534,277,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,223,251,1,47,https://api.demoblaze.com/bycat,277,0,107
+1623613187377,180,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,219,251,1,1,https://api.demoblaze.com/bycat,180,0,104
+1623613419942,181,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,219,251,1,1,https://api.demoblaze.com/bycat,181,0,95
+1623613863553,234,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,219,251,1,1,https://api.demoblaze.com/bycat,234,0,78
+1623613936460,226,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,223,251,1,1,https://api.demoblaze.com/bycat,226,0,80
+1623614068681,206,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,223,251,1,1,https://api.demoblaze.com/bycat,206,0,101
+1623614585654,316,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,223,251,1,1,https://api.demoblaze.com/bycat,316,0,144
+1623614873570,271,ByCategoryPhones1,200,OK,1 user categories by phone 4-1,text,true,,800,298,1,1,https://www.automationpractice.com/index.php?id_category=3&controller=category,265,0,98

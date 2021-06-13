@@ -4,7 +4,7 @@ Test project for TopTal interview process. UI, API and Performance testing
 
 ## Installation
 
-Project requires gradle and java 11 to be installed
+Project requires gradle, java 11, and apache jmeter to be installed
 
 https://gradle.org/install/
 
@@ -54,3 +54,13 @@ A docker compose file exists to deploy the API and Selenoid (the remoteWebdriver
 ```
 docker-compose -f ./Docker/docker-compose.yml up -d 
 ```
+
+## Apache Jmeter (Performance Testing)
+
+To start jmeter go to apache-jmeter-5.4.1/bin/ApacheJMeter after downloading it.
+
+The JMX exists in the jmeter folder from the project root.
+
+Under the user defined variables, the path can be set where the graphs and results will be stored after the run
+
+https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.4.zip

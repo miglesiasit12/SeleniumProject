@@ -1,2 +1,0 @@
-timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
-1622514802527,130,ByCategoryPhones1,200,OK,1 user categories by phone 6-1,text,true,,219,251,1,18,https://api.demoblaze.com/bycat,130,0,53
