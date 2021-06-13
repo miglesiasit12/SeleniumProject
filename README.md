@@ -7,6 +7,7 @@ Test project for TopTal interview process. UI, API and Performance testing
 Project requires gradle and java 11 to be installed
 
 https://gradle.org/install/
+
 https://mail.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracle-jdk
 
 ## Usage
@@ -23,31 +24,31 @@ Multiple environment variables can be passed to modify the way the tests run EX:
 gradle test -DbrowserType="FIREFOX" -DisRemoteDriverRun="false"
 ```
 
-###browserType
+### browserType
 CHROME and FIREFOX are supported types
 Default value: CHROME
 
-###isRemoteDriverRun 
+### isRemoteDriverRun 
 Determines whether the test uses remoteWebdriver or a local browser
 Default value: true
 
-###remoteWebDriverHost 
+### remoteWebDriverHost 
 The host that the remorteWebDriver connects to
 Default value: http://localhost:4444/wd/hub
 
-###mapApiBaseUrl 
+### mapApiBaseUrl 
 URL that the api exists on
 Default value: http://localhost
 
-###mapApiBasePath
+### mapApiBasePath
 path that the api exists on within the url
 Default value: /api/v1
 
-###mapApiPort
+### mapApiPort
 port that the api uses
 Default value: 8000
 
-##Docker
+## Docker
 A docker compose file exists to deploy the API and Selenoid which the remoteWebdriver connects to
 
 ```
