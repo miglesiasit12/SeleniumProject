@@ -18,7 +18,7 @@ in the project root using, command-line or an IDE run
 gradle test
 ```
 
-Multiple environment variables can be passed to modify the way the tests run EX:
+Multiple environment variables can be passed to modify the way the tests run
 
 ```
 gradle test -DbrowserType="FIREFOX" -DisRemoteDriverRun="false"
@@ -49,7 +49,7 @@ port that the api uses
 Default value: 8000
 
 ## Docker
-A docker compose file exists to deploy the API and Selenoid which the remoteWebdriver connects to
+A docker compose file exists to deploy the API and Selenoid (the remoteWebdriver connects to this service)
 
 ```
 docker-compose -f ./Docker/docker-compose.yml up -d 
