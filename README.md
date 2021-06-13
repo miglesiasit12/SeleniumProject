@@ -12,7 +12,13 @@ https://mail.codejava.net/java-se/download-and-install-java-11-openjdk-and-oracl
 
 ## Usage
 
-in the project root using, command-line or an IDE run
+in the project root using, command-line start the API
+
+```
+gradle bootRun
+```
+
+Start the tests
 
 ```
 gradle test
