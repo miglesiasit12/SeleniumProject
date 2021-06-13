@@ -1,6 +1,9 @@
 package test.ui;
 
 import io.qameta.allure.Allure;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,10 +18,13 @@ import test.ui.utils.UiExtension;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Tag("ui")
+@Epic("UI Tests")
+@Feature("Checkout Pages")
 @ExtendWith(UiExtension.class)
 public class CheckoutTests {
 
     @Test
+    @Description("Checkout with and login with an existing user to pay with a bank wire and assert that the payment is confirmed")
     public void checkOutNotLoggedInWithBankWire(WebDriver driver) {
         WomenCategoryPage womenCategoryPage = new WomenCategoryPage(driver);
         AddedToCartPage addedToCartPage = new AddedToCartPage(driver);
@@ -28,6 +34,7 @@ public class CheckoutTests {
         ShippingPage shippingPage = new ShippingPage(driver);
         PaymentPage paymentPage = new PaymentPage(driver);
 
+        //Add product to cart and proceed through the checkout process
         womenCategoryPage.addFirstWomenProductToCart();
         new WebDriverWait(driver, 10).until(ExpectedConditions.elementToBeClickable(addedToCartPage.getProceedToCheckoutButton())).click();
         shoppingCartPage.getProceedToCheckoutButton().click();

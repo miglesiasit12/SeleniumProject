@@ -1,12 +1,12 @@
 package test.api;
 
 import com.miglesias.api.model.GeoapifyMap;
-import io.qameta.allure.Allure;
-import io.qameta.allure.Feature;
+import io.qameta.allure.*;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import test.api.util.ApiExtension;
@@ -16,8 +16,9 @@ import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
-@Feature("GeoApify Map")
+@Tag("api")
+@Epic("Api Tests")
+@Feature("ADD Map Endpoint")
 @ExtendWith(ApiExtension.class)
 public class AddMapTests {
 
@@ -29,16 +30,29 @@ public class AddMapTests {
     }
 
     @Test
+    @Description("Add a valid map object returns the map that was added and 201 status code")
     public void addAMapTest(RequestSpecification requestSpecification) {
         Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
                 .body(map)
                 .when().post("/map");
 
-        Allure.step("Verify status code is 201");
-        assertEquals(201, response.getStatusCode());
+        assertAll("Validate response body and status code",
+                () -> assertEquals(201, response.getStatusCode()),
+                () -> assertEquals(map.getMapName(), response.jsonPath().getString("mapName")),
+                () -> assertEquals(map.getArea(), response.jsonPath().getString("area"), "area field in map object"),
+                () -> assertEquals(map.getStyle(), response.jsonPath().getString("style"), "style field in map object"),
+                () -> assertEquals(map.getWidth(), response.jsonPath().getInt("width"), "width field in map object"),
+                () -> assertEquals(map.getHeight(), response.jsonPath().getInt("height"), "height field in map object"),
+                () -> assertEquals(map.getMarker().getColor(), response.jsonPath().getString("marker.color"), "marker.color field in map object"),
+                () -> assertEquals(map.getMarker().getLonlat(), response.jsonPath().getString("marker.lonlat"), "marker.lonlat field in map object"),
+                () -> assertEquals(map.getMarker().getIcon(), response.jsonPath().getString("marker.icon"), "marker.icon field in map object"),
+                () -> assertEquals(map.getMarker().getSize(), response.jsonPath().getString("marker.size"), "marker.size field in map object"),
+                () -> assertEquals(map.getMarker().getType(), response.jsonPath().getString("marker.type"), "marker.type field in map object")
+        );
     }
 
     @Test
+    @Description("Add a map with a blank map name returns a 400 and error messages returned")
     public void addAMapMapNameBlankTest(RequestSpecification requestSpecification) {
         map = map.toBuilder().mapName("").build();
         Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
@@ -53,6 +67,7 @@ public class AddMapTests {
     }
 
     @Test
+    @Description("Add a map with a blank map name returns a 400 and error messages returned")
     public void addAMapStyleIncorrectFormatTest(RequestSpecification requestSpecification) {
         map = map.toBuilder().style("abc123").build();
         Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
@@ -67,6 +82,7 @@ public class AddMapTests {
     }
 
     @Test
+    @Description("Add a map with an invalid area field returns a 400 and error messages returned")
     public void addAMapAreaIncorrectFormatTest(RequestSpecification requestSpecification) {
         map = map.toBuilder().area("-.21,43g").build();
         Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
@@ -81,6 +97,7 @@ public class AddMapTests {
     }
 
     @Test
+    @Description("Add a map with an invalid color field returns a 400 and error messages returned")
     public void addAMapMarkerColorIncorrectFormatTest(RequestSpecification requestSpecification) {
         map = map.toBuilder().marker(map.getMarker().toBuilder().color("#9999999999").build()).build();
         Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))

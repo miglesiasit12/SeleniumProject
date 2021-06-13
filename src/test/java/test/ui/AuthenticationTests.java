@@ -1,6 +1,6 @@
 package test.ui;
 
-import io.qameta.allure.Allure;
+import io.qameta.allure.*;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,11 +15,15 @@ import test.ui.utils.UiExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 @Tag("ui")
+@Epic("UI Tests")
+@Feature("Authentication Pages")
 @ExtendWith(UiExtension.class)
 public class AuthenticationTests {
 
     @Test
+    @Description("Login as an existing user and assert that the user is logged in")
     public void loginAsExistingUser(WebDriver driver) {
         HeaderBarPage headerBarPage = new HeaderBarPage(driver);
         AuthenticationPage authenticationPage = new AuthenticationPage(driver);
@@ -32,6 +36,7 @@ public class AuthenticationTests {
     }
 
     @Test
+    @Description("Register as a new user and assert the user is logged in and sent to the account page")
     public void registerNewUser(WebDriver driver) {
         CreateAnAccountPage createAnAccountPage = new CreateAnAccountPage(driver);
         AccountPage accountPage = new AccountPage(driver);

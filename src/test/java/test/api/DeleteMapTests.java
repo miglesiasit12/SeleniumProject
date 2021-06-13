@@ -2,9 +2,13 @@ package test.api;
 
 import com.miglesias.api.model.GeoapifyMap;
 import io.qameta.allure.Allure;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import test.api.util.ApiExtension;
@@ -17,12 +21,16 @@ import java.util.List;
 import static io.restassured.RestAssured.given;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@Tag("api")
+@Epic("Api Tests")
+@Feature("DELETE Map Endpoint")
 @ExtendWith(ApiExtension.class)
 public class DeleteMapTests {
 
     GeoapifyMap map;
 
     @Test
+    @Description("DELETE map deletes a map from the database and GET map should return a 404 when deleted and return the number of maps deleted")
     public void deleteAMapTest(RequestSpecification requestSpecification) {
         map = GeoapifyMapUtils.createMap(600, 800);
         given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("create map"))
@@ -46,6 +54,7 @@ public class DeleteMapTests {
     }
 
     @Test
+    @Description("Delete map should be able to delete multiple maps and return the number of maps deleted")
     public void deleteMultipleMapsTest(RequestSpecification requestSpecification) {
         List<String> mapsToDelete = new ArrayList<>();
         int timesToCreate = 0;
@@ -69,6 +78,7 @@ public class DeleteMapTests {
     }
 
     @Test
+    @Description("DELETE map should not delete a map when the incorrect secret key is given and return a 401 status code")
     public void deleteIncorrectKeyTest(RequestSpecification requestSpecification) {
         Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("delete map"))
                 .queryParam("mapNames", Collections.singletonList(""))
@@ -80,6 +90,7 @@ public class DeleteMapTests {
     }
 
     @Test
+    @Description("DELETE map should return a 400 when the mapname is empty")
     public void deleteAMapIncorrectParamTest(RequestSpecification requestSpecification) {
         Response response = given(requestSpecification).filter(new AllureRestAssured().setRequestAttachmentName("delete map"))
                 .queryParam("mapName", Collections.singletonList(""))

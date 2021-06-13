@@ -20,4 +20,7 @@ public class AddedToCartPage extends BasePage {
 
     @FindBy(css = "#layer_cart > div.clearfix > div.layer_cart_cart.col-xs-12.col-md-6 > div.button-container > a")
     private WebElement proceedToCheckoutButton;
+
+    @FindBy(css ="#layer_cart_product_attributes")
+    private WebElement productAttributes;
 }

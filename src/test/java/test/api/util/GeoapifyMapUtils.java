@@ -7,6 +7,7 @@ import io.qameta.allure.Allure;
 
 import java.util.UUID;
 
+
 public class GeoapifyMapUtils {
 
     public static GeoapifyMap createMap(int width, int height) {
@@ -20,7 +21,8 @@ public class GeoapifyMapUtils {
         String type = "awesome";
         Marker marker = new Marker(color, area, icon, size, type);
 
-        Allure.description("Map Name Created: " + mapName);
+
+        Allure.getLifecycle().updateTestCase(Allure.getLifecycle().getCurrentTestCase().get(), testResult -> testResult.setDescription(testResult.getDescription() + "<br>Map Name Created:  + mapName"));
         return new GeoapifyMap(mapName, area, style, width, height, marker);
     }
 }

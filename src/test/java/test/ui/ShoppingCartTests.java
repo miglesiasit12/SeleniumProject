@@ -1,6 +1,8 @@
 package test.ui;
 
 import io.qameta.allure.Allure;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,6 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Tag("ui")
+@Epic("UI Tests")
+@Feature("Shopping Cart Pages")
 @ExtendWith(UiExtension.class)
 public class ShoppingCartTests {
 
