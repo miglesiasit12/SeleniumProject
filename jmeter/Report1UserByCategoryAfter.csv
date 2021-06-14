@@ -14,3 +14,6 @@ timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success
 1623614084009,142,ByCategoryPhones1,200,OK,1 user categories by phone 6-1,text,true,,219,251,1,1,https://api.demoblaze.com/bycat,142,0,61
 1623614601084,137,ByCategoryPhones1,200,OK,1 user categories by phone 6-1,text,true,,219,251,1,1,https://api.demoblaze.com/bycat,137,0,55
 1623614891108,280,ByCategoryPhones1,200,OK,1 user categories by phone 6-1,text,true,,800,298,1,1,https://www.automationpractice.com/index.php?id_category=3&controller=category,274,0,101
+1623659934295,268,ByCategoryPhones1,200,OK,1 user categories by phone 6-1,text,true,,800,298,1,1,https://www.automationpractice.com/index.php?id_category=3&controller=category,262,0,88
+1623660101771,241,ByCategoryWomen1,200,OK,1 user categories by Women 6-1,text,true,,800,294,1,1,https://www.automationpractice.com/index.php?id_category=3&controller=category,236,0,83
+1623660285122,252,ByCategoryWomen1,200,OK,1 user categories by Women 6-1,text,true,,800,294,1,1,https://www.automationpractice.com/index.php?id_category=3&controller=category,247,0,88
